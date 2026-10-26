@@ -43,8 +43,8 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 # "blurb" = drawn from the repository's README / description.
 [[params.repos]]
   name = "engine"
-  status = "v0.1.0 released"
-  blurb = "The `wctrd` daemon and the `wctr` command: a container engine for WASI (`wasip1`) workloads, compatible with the Docker Engine API, in pure Go. **v0.1.0** (milestone M1) runs natively on Linux and macOS with a wazero executor: `wctr pull`, `images`, `run`, `ps`, `logs`, `rm`, `rmi`, `inspect`, `kill` and `version`, against an OCI image layout or a registry. No networking, `exec`, attach or build yet. Install with `go install github.com/go-wasmcontainers/engine/cmd/wctr@v0.1.0` (and `cmd/wctrd`)."
+  status = "v0.2.0 released"
+  blurb = "The `wctrd` daemon and the `wctr` command: a container engine for WASI (`wasip1`) workloads, compatible with the Docker Engine API, in pure Go. **v0.2.0** runs natively on Linux and macOS with a wazero executor (since v0.1.0): `wctr pull`, `images`, `run`, `ps`, `logs`, `rm`, `rmi`, `inspect`, `kill` and `version`, against an OCI image layout or a registry; v0.2.0 adds the browser executor (`runtime/browser`), the shared WASI host (`wasi`), `api/inproc`, the `cli` package and `RegistryOptions.Mirrors`. No networking, `exec`, attach or build yet. Install with `go install github.com/go-wasmcontainers/engine/cmd/wctr@v0.2.0` (and `cmd/wctrd`)."
 
 [[params.repos]]
   name = "relay"
@@ -53,8 +53,8 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 
 [[params.repos]]
   name = "playground"
-  status = "planned"
-  blurb = "An in-browser container playground: a terminal that runs `wctr` against WASI containers, for cloud and container training labs. **Not started**: it needs the engine's executor to run in a browser worker."
+  status = "live"
+  blurb = "An in-browser container playground: [a terminal that runs `wctr`](https://go-wasmcontainers.github.io/playground/) against WASI containers, with no server, for cloud and container training labs. `pull`, `run`, `ps`, `logs`, `rm`, `rmi`, `images`, `inspect`, `kill`, with the images `hello`, `greet`, `lab`, `age`, `go-md2man` and `shfmt` kept in the browser across reloads. No stdin, shell or networking yet. It has no release tag yet."
 
 # What is planned, as one list so the page's counts are derived from it and
 # never typed beside it.
@@ -81,7 +81,3 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.planned]]
   name = "A mini-Kubernetes"
   what = "Enough of the orchestrator's API to teach its concepts."
-
-[[params.planned]]
-  name = "Browser executor"
-  what = "The same executor model in a browser worker, which is what the playground needs."
