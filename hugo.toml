@@ -53,8 +53,8 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 
 [[params.repos]]
   name = "dashboard"
-  status = "v0.1.0 released, live demo"
-  blurb = "A graphical dashboard for the engine — containers, images, volumes and a `wctr` terminal — built with go-widgets, running in the browser on the same engine and API as `wctr`; every action shows the `wctr` command it stands for. [Live demo](https://go-wasmcontainers.github.io/dashboard/). The Volumes view waits for engine volumes, and it polls every 2 s until the engine serves `/events`. It is planned to become the playground's main UI."
+  status = "v0.2.0 released, live demo"
+  blurb = "A graphical dashboard for the engine — containers, images, volumes and a `wctr` terminal — built with go-widgets, running in the browser on the same engine and API as `wctr`; every action shows the `wctr` command it stands for. [Live demo](https://go-wasmcontainers.github.io/dashboard/). **v0.2.0** runs on engine v0.5.0: Start, Stop and Restart use `/start`, `/stop` and `/restart` and show the matching `wctr` line, and the status bar shows the storage. Volumes, live events and stats appear once the engine serves them. The standalone demo keeps its state in memory (nothing persists across a reload). It is planned to become the playground's main UI."
 
 [[params.repos]]
   name = "playground"
