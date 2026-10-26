@@ -58,8 +58,8 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 
 [[params.repos]]
   name = "playground"
-  status = "v0.1.0 released, live"
-  blurb = "An in-browser container playground: [a terminal that runs `wctr`](https://go-wasmcontainers.github.io/playground/) against WASI containers, with no server, for cloud and container training labs. It now runs engine v0.9.0: `pull`, `run` (with `-v` volumes), `ps`, `logs`, `rm`, `rmi`, `images`, `inspect`, `kill`, `start`, `stop`, `restart`, `diff`, `stats`, `events`, `volume` and `system df|prune`, with the images `hello`, `greet`, `lab`, `age`, `go-md2man`, `shfmt` and the C tools `lua`, `sqlite3` and `minigzip` kept in the browser across reloads. No stdin, shell or networking yet. Its latest tag is v0.1.0."
+  status = "v0.2.0 released, live"
+  blurb = "An in-browser container playground: [a terminal that runs `wctr`](https://go-wasmcontainers.github.io/playground/) against WASI containers, with no server, for cloud and container training labs. **v0.2.0** runs engine v0.9.0 with completion, persistence and offline use: `pull`, `run` (with `-v` volumes), `ps`, `logs`, `rm`, `rmi`, `images`, `inspect`, `kill`, `start`, `stop`, `restart`, `diff`, `stats`, `events`, `volume` and `system df|prune`, with the images `hello`, `greet`, `lab`, `age`, `go-md2man`, `shfmt` and the C tools `lua`, `sqlite3` and `minigzip` kept in the browser across reloads. No stdin, shell or networking yet."
 
 # What is planned, as one list so the page's counts are derived from it and
 # never typed beside it.
