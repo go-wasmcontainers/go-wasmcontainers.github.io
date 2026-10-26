@@ -47,6 +47,11 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   blurb = "The `wctrd` daemon and the `wctr` command: a container engine for WASI (`wasip1`) workloads, compatible with the Docker Engine API, in pure Go. **v0.1.0** (milestone M1) runs natively on Linux and macOS with a wazero executor: `wctr pull`, `images`, `run`, `ps`, `logs`, `rm`, `rmi`, `inspect`, `kill` and `version`, against an OCI image layout or a registry. No networking, `exec`, attach or build yet. Install with `go install github.com/go-wasmcontainers/engine/cmd/wctr@v0.1.0` (and `cmd/wctrd`)."
 
 [[params.repos]]
+  name = "relay"
+  status = "v0.1.0 released"
+  blurb = "`wctr-relay`, the classroom relay and firewall: students' engines connect to it over one secure WebSocket; it gives every container an address and a DNS name and checks every flow against security groups modelled on OpenStack Neutron (default deny, both ends, stateful), with a flow log, a gRPC control API (Connect) and OpenID Connect sign-in. **v0.1.0** ships milestones M-relay-1 and M-relay-2, tested natively; the engine's network driver, the browser path and the live flow map are next. Install with `go install github.com/go-wasmcontainers/relay/cmd/wctr-relay@v0.1.0`."
+
+[[params.repos]]
   name = "playground"
   status = "planned"
   blurb = "An in-browser container playground: a terminal that runs `wctr` against WASI containers, for cloud and container training labs. **Not started**: it needs the engine's executor to run in a browser worker."
@@ -59,7 +64,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 
 [[params.planned]]
   name = "Classroom relay"
-  what = "Planned: a classroom relay with security groups. Students' browsers reach each other's containers through a relay on the teacher's laptop that is also a firewall, with rules modelled on OpenStack Neutron and a gRPC control API. [Design](https://go-wasmcontainers.github.io/docs/main/design/classroom-network/)."
+  what = "The relay itself shipped in relay v0.1.0; planned: containers in the playground reaching each other through it (the engine's network driver and the browser path), the live flow map, and high availability across relays. [Design](https://go-wasmcontainers.github.io/docs/main/design/classroom-network/)."
 
 [[params.planned]]
   name = "A shell and exec"
