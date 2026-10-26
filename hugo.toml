@@ -53,8 +53,8 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 
 [[params.repos]]
   name = "playground"
-  status = "live"
-  blurb = "An in-browser container playground: [a terminal that runs `wctr`](https://go-wasmcontainers.github.io/playground/) against WASI containers, with no server, for cloud and container training labs. `pull`, `run`, `ps`, `logs`, `rm`, `rmi`, `images`, `inspect`, `kill`, with the images `hello`, `greet`, `lab`, `age`, `go-md2man` and `shfmt` kept in the browser across reloads. No stdin, shell or networking yet. It has no release tag yet."
+  status = "v0.1.0 released, live"
+  blurb = "An in-browser container playground: [a terminal that runs `wctr`](https://go-wasmcontainers.github.io/playground/) against WASI containers, with no server, for cloud and container training labs. `pull`, `run`, `ps`, `logs`, `rm`, `rmi`, `images`, `inspect`, `kill`, with the images `hello`, `greet`, `lab`, `age`, `go-md2man` and `shfmt` kept in the browser across reloads. No stdin, shell or networking yet. Released as v0.1.0."
 
 # What is planned, as one list so the page's counts are derived from it and
 # never typed beside it.
