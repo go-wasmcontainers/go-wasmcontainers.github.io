@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{ .Site.Title }} — Docker-compatible containers that are WASI modules</title>
-<meta name="description" content="go-wasmcontainers is a Docker-compatible container engine whose containers are WASI (wasip1/wasm) modules, with an in-browser playground planned for cloud and container training labs. In progress: the engine's first milestone. Pure Go, CGO_ENABLED=0.">
+<title>{{ .Site.Title }} — containers that are WASI modules</title>
+<meta name="description" content="go-wasmcontainers is a container engine, compatible with the Docker Engine API, whose containers are WASI (wasip1/wasm) modules, with an in-browser playground planned for cloud and container training labs. In progress: the engine's first milestone. Pure Go, CGO_ENABLED=0.">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 {{ partial "styles.html" . }}
 </head>
@@ -18,31 +18,33 @@
 
   <div class="hero"><div class="wrap">
     <div>
-      <h1 class="head">Docker commands,<br><span class="accent">WASI containers.</span></h1>
-      <p class="sub"><b>A container here is a WebAssembly module.</b> The engine speaks the Docker API on <code>/var/run/docker.sock</code>, so the <code>docker</code> CLI a lab teaches is the one the learner types; the image is an OCI image with <code>os=wasip1</code> and <code>arch=wasm</code>, run by <a href="https://wazero.io">wazero</a> instead of a Linux kernel. <b>Work in progress: nothing is released yet.</b> Pure Go, <code>CGO_ENABLED=0</code>. BSD-3-Clause.</p>
+      <h1 class="head">wctr commands,<br><span class="accent">WASI containers.</span></h1>
+      <p class="sub"><b>A container here is a WebAssembly module.</b> The <code>wctrd</code> daemon listens on <code>/var/run/wctr.sock</code> and is compatible with the Docker Engine API; <code>wctr</code> is the command a lab teaches and the learner types; the image is an OCI image with <code>os=wasip1</code> and <code>arch=wasm</code>, run by <a href="https://wazero.io">wazero</a> instead of a Linux kernel. <b>Work in progress: nothing is released yet.</b> Pure Go, <code>CGO_ENABLED=0</code>. BSD-3-Clause.</p>
       <div class="cta">
         <a class="btn btn-primary" href="https://go-wasmcontainers.github.io/docs/">{{ partial "icons/book.html" . }}Read the documentation →</a>
       </div>
       <div class="trust"><span><b>wasip1</b> images, OCI-compatible</span><span><b>M1</b> in progress</span><span><b>CGO=0</b> pure Go</span></div>
     </div>
     <div class="term">
-      <div class="bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span class="t">docker — zsh</span></div>
+      <div class="bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span class="t">wctr — zsh</span></div>
 {{/* ⛔ No program output is shown: the engine has no command to run yet, and a
      transcript nobody captured would be a claim that it works. What is listed
      is the command set the first milestone is being written to serve, and the
      planned commands are marked as planned. */}}
 <pre><span class="c-com"># the command set milestone M1 is being written to serve (not released yet)</span>
-<span class="c-cmd">$ docker</span> pull &lt;image&gt;
-<span class="c-cmd">$ docker</span> run &lt;image&gt;
-<span class="c-cmd">$ docker</span> ps
-<span class="c-cmd">$ docker</span> logs &lt;container&gt;
-<span class="c-cmd">$ docker</span> inspect &lt;container&gt;
-<span class="c-cmd">$ docker</span> rm &lt;container&gt;
+<span class="c-cmd">$ wctr</span> pull &lt;image&gt;
+<span class="c-cmd">$ wctr</span> run &lt;image&gt;
+<span class="c-cmd">$ wctr</span> ps
+<span class="c-cmd">$ wctr</span> logs &lt;container&gt;
+<span class="c-cmd">$ wctr</span> inspect &lt;container&gt;
+<span class="c-cmd">$ wctr</span> images
+<span class="c-cmd">$ wctr</span> rm &lt;container&gt;
+<span class="c-cmd">$ wctr</span> rmi &lt;image&gt;
 
 <span class="c-com"># planned, not started</span>
-<span class="c-cmd">$ docker</span> exec -it &lt;container&gt; sh
-<span class="c-cmd">$ docker</span> build .
-<span class="c-cmd">$ docker</span> compose up</pre>
+<span class="c-cmd">$ wctr</span> exec -it &lt;container&gt; sh
+<span class="c-cmd">$ wctr</span> build .
+<span class="c-cmd">$ wctr</span> compose up</pre>
     </div>
   </div></div>
 
@@ -57,10 +59,10 @@
     <h2>A lab should be <i>a web page</i>, not a virtual machine.</h2>
     <p class="lead">Teaching containers usually means provisioning a Linux machine per learner. WASI modules need no kernel, so the same engine that runs natively can, in the plan, run in a browser worker.</p>
     <div class="grid">
-      <div class="card"><div class="ico">🐳</div><h3>The Docker CLI, unchanged</h3><p>The engine answers the Docker Engine API (v1.47 is the version its reference is read from) on <code>/var/run/docker.sock</code>. Learners type the <code>docker</code> commands they will type at work.</p></div>
+      <div class="card"><div class="ico">🔌</div><h3>Compatible with the Docker Engine API</h3><p><code>wctrd</code> answers that API (v1.47 is the version its reference is read from) on <code>/var/run/wctr.sock</code>, and <code>WCTR_HOST</code> points <code>wctr</code> elsewhere. Learners type <code>wctr</code> commands, whose shape is the one they know from containers at work.</p></div>
       <div class="card"><div class="ico">🧊</div><h3>WASI images</h3><p>An image is an OCI image whose platform is <code>os=wasip1</code>, <code>arch=wasm</code>; the layer is a module. Images are meant to be apt-like, built from <a href="https://github.com/go-pkgx">pkgx</a> <code>wasip1</code> bottles — a target go-pkgx is gaining now.</p></div>
       <div class="card"><div class="ico">⚙️</div><h3>wazero executor</h3><p>Containers run in <a href="https://wazero.io">wazero</a>, a pure-Go WebAssembly runtime: no cgo, no kernel namespaces, one static binary.</p></div>
-      <div class="card"><div class="ico">🌐</div><h3>Planned: the browser</h3><p>The playground is a terminal running <code>docker</code> against WASI containers, entirely in a page. It has not been started; it depends on the executor running in a browser worker.</p></div>
+      <div class="card"><div class="ico">🌐</div><h3>Planned: the browser</h3><p>The playground is a terminal running <code>wctr</code> against WASI containers, entirely in a page. It has not been started; it depends on the executor running in a browser worker.</p></div>
     </div>
   </div></section>
 
@@ -97,7 +99,7 @@
   <section id="eco" style="padding-top:6px"><div class="wrap">
     <div class="band">
       <h2>Containers that ship like Go.</h2>
-      <p>No cgo, no daemon written in C, no kernel to provision. Every behaviour that follows a specification — OCI image and distribution, Docker registry token authentication, the Docker Engine API, the wasm OCI artifact layout, WASI preview1 — is written against the document it follows, and the engine's references page says which version was opened.</p>
+      <p>No cgo, no daemon written in C, no kernel to provision. Every behaviour that follows a specification — OCI image and distribution, registry token authentication, the Docker Engine API it is compatible with, the wasm OCI artifact layout, WASI preview1 — is written against the document it follows, and the engine's references page says which version was opened.</p>
       <a class="btn btn-ghost" href="https://github.com/go-wasmcontainers/engine">{{ partial "icons/github.html" . }}Read the source on GitHub →</a>
     </div>
   </div></section>
