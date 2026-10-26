@@ -4,9 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ .Site.Title }} — containers that are WASI modules</title>
-<meta name="description" content="go-wasmcontainers is a container engine, compatible with the Docker Engine API, whose containers are WASI (wasip1/wasm) modules, with an in-browser playground planned for cloud and container training labs. Engine v0.1.0 (milestone M1) is released. Pure Go, CGO_ENABLED=0.">
+<meta name="description" content="go-wasmcontainers is a container engine, compatible with the Docker Engine API, whose containers are WASI (wasip1/wasm) modules, with an in-browser playground for cloud and container training labs, live at /playground/. Engine v0.2.0 is released. Pure Go, CGO_ENABLED=0.">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 {{ partial "styles.html" . }}
+{{ partial "btn-try-style.html" . }}
 </head>
 <body class="lm">
   <header class="nav"><div class="wrap">
@@ -19,11 +20,12 @@
   <div class="hero"><div class="wrap">
     <div>
       <h1 class="head">wctr commands,<br><span class="accent">WASI containers.</span></h1>
-      <p class="sub"><b>A container here is a WebAssembly module.</b> The <code>wctrd</code> daemon listens on <code>/var/run/wctr.sock</code> and is compatible with the Docker Engine API; <code>wctr</code> is the command a lab teaches and the learner types; the image is an OCI image with <code>os=wasip1</code> and <code>arch=wasm</code>, run by <a href="https://wazero.io">wazero</a> instead of a Linux kernel. <b>Engine v0.1.0 is released</b>: native, no networking yet. Pure Go, <code>CGO_ENABLED=0</code>. BSD-3-Clause.</p>
+      <p class="sub"><b>A container here is a WebAssembly module.</b> The <code>wctrd</code> daemon listens on <code>/var/run/wctr.sock</code> and is compatible with the Docker Engine API; <code>wctr</code> is the command a lab teaches and the learner types; the image is an OCI image with <code>os=wasip1</code> and <code>arch=wasm</code>, run by <a href="https://wazero.io">wazero</a> instead of a Linux kernel. <b>Engine v0.2.0 is released, and the playground is live</b>: <code>wctr</code> runs in a browser tab, with no server. No networking, shell or stdin yet. Pure Go, <code>CGO_ENABLED=0</code>. BSD-3-Clause.</p>
       <div class="cta">
+        <a class="btn btn-try" href="https://go-wasmcontainers.github.io/playground/">{{ partial "icons/browser.html" . }}Try it in your browser</a>
         <a class="btn btn-primary" href="https://go-wasmcontainers.github.io/docs/">{{ partial "icons/book.html" . }}Read the documentation →</a>
       </div>
-      <div class="trust"><span><b>wasip1</b> images, OCI-compatible</span><span><b>v0.1.0</b> released (M1)</span><span><b>CGO=0</b> pure Go</span></div>
+      <div class="trust"><span><b>wasip1</b> images, OCI-compatible</span><span><b>v0.2.0</b> released</span><span><b>live</b> in the browser</span><span><b>CGO=0</b> pure Go</span></div>
     </div>
     <div class="term">
       <div class="bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span class="t">wctr — zsh</span></div>
@@ -66,12 +68,12 @@ probe        latest   ae7fb9d7cefb   12 hours ago   811kB</span>
   <section id="why"><div class="wrap">
     <span class="eyebrow">Why go-wasmcontainers</span>
     <h2>A lab should be <i>a web page</i>, not a virtual machine.</h2>
-    <p class="lead">Teaching containers usually means provisioning a Linux machine per learner. WASI modules need no kernel, so the same engine that runs natively can, in the plan, run in a browser worker.</p>
+    <p class="lead">Teaching containers usually means provisioning a Linux machine per learner. WASI modules need no kernel, so the same engine that runs natively runs in a browser tab, which is what the <a href="https://go-wasmcontainers.github.io/playground/">playground</a> does.</p>
     <div class="grid">
       <div class="card"><div class="ico">🔌</div><h3>Compatible with the Docker Engine API</h3><p><code>wctrd</code> answers that API (v1.47 is the version its reference is read from) on <code>/var/run/wctr.sock</code>, and <code>WCTR_HOST</code> points <code>wctr</code> elsewhere. Learners type <code>wctr</code> commands, whose shape is the one they know from containers at work.</p></div>
       <div class="card"><div class="ico">🧊</div><h3>WASI images</h3><p>An image is an OCI image whose platform is <code>os=wasip1</code>, <code>arch=wasm</code>; the layer is a module. Images are meant to be apt-like, built from <a href="https://github.com/go-pkgx">pkgx</a> <code>wasip1</code> bottles — a target go-pkgx is gaining now.</p></div>
       <div class="card"><div class="ico">⚙️</div><h3>wazero executor</h3><p>Containers run in <a href="https://wazero.io">wazero</a>, a pure-Go WebAssembly runtime: no cgo, no kernel namespaces, one static binary.</p></div>
-      <div class="card"><div class="ico">🌐</div><h3>Planned: the browser</h3><p>The playground is a terminal running <code>wctr</code> against WASI containers, entirely in a page. It has not been started; it depends on the executor running in a browser worker.</p></div>
+      <div class="card"><div class="ico">🌐</div><h3>Live: the browser</h3><p>The <a href="https://go-wasmcontainers.github.io/playground/">playground</a> is a terminal running <code>wctr</code> against WASI containers, entirely in a page, with the browser executor of engine v0.2.0. Images and pulls survive a reload. Cold start is slower than wasmtime (first run of <code>hello</code>: 81 ms in Chromium, 291 ms in Firefox, against 23 ms for wasmtime in one CI run).</p></div>
     </div>
   </div></section>
 
@@ -88,7 +90,7 @@ probe        latest   ae7fb9d7cefb   12 hours ago   811kB</span>
   <section id="roadmap" style="padding-top:10px"><div class="wrap">
     <span class="eyebrow">Roadmap</span>
     <h2>What is <i>planned</i>, and only that.</h2>
-    <p class="lead">Nothing below exists yet. It is listed so a reader can tell what engine v0.1.0 does not do: no networking, <code>exec</code>, attach or build; no <code>tar+zstd</code> layers; containers are lost when <code>wctrd</code> restarts.</p>
+    <p class="lead">Nothing below exists yet. It is listed so a reader can tell what engine v0.2.0 and the playground do not do: no networking, <code>exec</code>, attach or build; no stdin or shell in the playground; no <code>tar+zstd</code> layers; containers are lost when <code>wctrd</code> restarts.</p>
     <div class="grid">
       {{ range .Site.Params.planned }}
       <div class="card"><h3>{{ .name }} <small>planned</small></h3><p>{{ .what | markdownify }}</p></div>
@@ -101,7 +103,7 @@ probe        latest   ae7fb9d7cefb   12 hours ago   811kB</span>
       <div><div class="n">{{ len .Site.Params.repos }}</div><div class="l">repositories: the engine and the playground</div></div>
       <div><div class="n">3.4 ms</div><div class="l">warm container start on one core (cold 610 ms); not yet compared to a reference runtime</div></div>
       <div><div class="n">{{ len .Site.Params.planned }}</div><div class="l">roadmap items, all planned</div></div>
-      <div><div class="n">1</div><div class="l">release: engine v0.1.0, with <code>go install github.com/go-wasmcontainers/engine/cmd/wctr@v0.1.0</code></div></div>
+      <div><div class="n">2</div><div class="l">engine releases, v0.1.0 and v0.2.0: <code>go install github.com/go-wasmcontainers/engine/cmd/wctr@v0.2.0</code></div></div>
     </div>
   </div></section>
 
