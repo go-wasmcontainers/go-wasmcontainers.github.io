@@ -30,7 +30,7 @@ jobs:
           cache: false
       - uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: "0.167.0"
+          hugo-version: "0.168.0"
           extended: true
       # --baseURL /: the site's own pages are checked as files of public/, not
       # on the live site, where a page this very change adds answers 404 until
