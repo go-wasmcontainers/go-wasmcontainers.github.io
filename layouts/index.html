@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ .Site.Title }} — containers that are WASI modules</title>
-<meta name="description" content="go-wasmcontainers is a container engine, compatible with the Docker Engine API, whose containers are WASI (wasip1/wasm) modules, with an in-browser playground planned for cloud and container training labs. In progress: the engine's first milestone. Pure Go, CGO_ENABLED=0.">
+<meta name="description" content="go-wasmcontainers is a container engine, compatible with the Docker Engine API, whose containers are WASI (wasip1/wasm) modules, with an in-browser playground planned for cloud and container training labs. Engine v0.1.0 (milestone M1) is released. Pure Go, CGO_ENABLED=0.">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 {{ partial "styles.html" . }}
 </head>
@@ -19,27 +19,36 @@
   <div class="hero"><div class="wrap">
     <div>
       <h1 class="head">wctr commands,<br><span class="accent">WASI containers.</span></h1>
-      <p class="sub"><b>A container here is a WebAssembly module.</b> The <code>wctrd</code> daemon listens on <code>/var/run/wctr.sock</code> and is compatible with the Docker Engine API; <code>wctr</code> is the command a lab teaches and the learner types; the image is an OCI image with <code>os=wasip1</code> and <code>arch=wasm</code>, run by <a href="https://wazero.io">wazero</a> instead of a Linux kernel. <b>Work in progress: nothing is released yet.</b> Pure Go, <code>CGO_ENABLED=0</code>. BSD-3-Clause.</p>
+      <p class="sub"><b>A container here is a WebAssembly module.</b> The <code>wctrd</code> daemon listens on <code>/var/run/wctr.sock</code> and is compatible with the Docker Engine API; <code>wctr</code> is the command a lab teaches and the learner types; the image is an OCI image with <code>os=wasip1</code> and <code>arch=wasm</code>, run by <a href="https://wazero.io">wazero</a> instead of a Linux kernel. <b>Engine v0.1.0 is released</b>: native, no networking yet. Pure Go, <code>CGO_ENABLED=0</code>. BSD-3-Clause.</p>
       <div class="cta">
         <a class="btn btn-primary" href="https://go-wasmcontainers.github.io/docs/">{{ partial "icons/book.html" . }}Read the documentation →</a>
       </div>
-      <div class="trust"><span><b>wasip1</b> images, OCI-compatible</span><span><b>M1</b> in progress</span><span><b>CGO=0</b> pure Go</span></div>
+      <div class="trust"><span><b>wasip1</b> images, OCI-compatible</span><span><b>v0.1.0</b> released (M1)</span><span><b>CGO=0</b> pure Go</span></div>
     </div>
     <div class="term">
       <div class="bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span class="t">wctr — zsh</span></div>
-{{/* ⛔ No program output is shown: the engine has no command to run yet, and a
-     transcript nobody captured would be a claim that it works. What is listed
-     is the command set the first milestone is being written to serve, and the
-     planned commands are marked as planned. */}}
-<pre><span class="c-com"># the command set milestone M1 is being written to serve (not released yet)</span>
-<span class="c-cmd">$ wctr</span> pull &lt;image&gt;
-<span class="c-cmd">$ wctr</span> run &lt;image&gt;
-<span class="c-cmd">$ wctr</span> ps
-<span class="c-cmd">$ wctr</span> logs &lt;container&gt;
-<span class="c-cmd">$ wctr</span> inspect &lt;container&gt;
+{{/* Real transcript: the output of the engine's TestAcceptance, which runs the
+     real binaries in CI, copied from the engine README's Demo section with
+     nothing edited. Lines of that transcript are left out, none changed. */}}
+<pre><span class="c-com"># engine v0.1.0, the engine's acceptance test</span>
+<span class="c-cmd">$ wctr</span> pull oci:./layout:hello
+<span class="c-out">Pulling from oci:/home/me/layout:hello
+f0beefb89ff1: Pull complete
+Digest: sha256:da3eead2a4f462a53bebdee2f9dc5fcb94cc5a97ebe1680477f0ce0328ff67f0
+Status: Downloaded newer image for hello:latest</span>
+<span class="c-cmd">$ wctr</span> run --rm hello
+<span class="c-out">Hello from a WebAssembly container!</span>
+<span class="c-cmd">$ wctr</span> run --rm -e NAME=x greet
+<span class="c-out">Hello, x!</span>
+<span class="c-cmd">$ wctr</span> run --name failing probe exit 42
+<span class="c-out">bye</span>
+<span class="c-cmd">$ echo</span> $?
+<span class="c-out">42</span>
 <span class="c-cmd">$ wctr</span> images
-<span class="c-cmd">$ wctr</span> rm &lt;container&gt;
-<span class="c-cmd">$ wctr</span> rmi &lt;image&gt;
+<span class="c-out">REPOSITORY   TAG      IMAGE ID       CREATED        SIZE
+greet        latest   068beee4f451   12 hours ago   2.45MB
+hello        latest   85c424cd2beb   12 hours ago   735kB
+probe        latest   ae7fb9d7cefb   12 hours ago   811kB</span>
 
 <span class="c-com"># planned, not started</span>
 <span class="c-cmd">$ wctr</span> exec -it &lt;container&gt; sh
@@ -50,7 +59,7 @@
 
   <div class="strip"><div class="wrap">
     {{/* DERIVED from the roadmap list, never typed next to it. */}}
-    <span class="lead-line">{{ len .Site.Params.planned }} things on the roadmap — <b>all of them planned, none shipped</b></span>
+    <span class="lead-line">{{ len .Site.Params.planned }} things on the roadmap — <b>all of them planned, none shipped yet</b></span>
     <div class="mods">{{ range .Site.Params.planned }}<a href="#roadmap">{{ .name }}</a>{{ end }}</div>
   </div></div>
 
@@ -79,7 +88,7 @@
   <section id="roadmap" style="padding-top:10px"><div class="wrap">
     <span class="eyebrow">Roadmap</span>
     <h2>What is <i>planned</i>, and only that.</h2>
-    <p class="lead">Nothing below exists yet. It is listed so a reader can tell what the engine will not do on day one.</p>
+    <p class="lead">Nothing below exists yet. It is listed so a reader can tell what engine v0.1.0 does not do: no networking, <code>exec</code>, attach or build; no <code>tar+zstd</code> layers; containers are lost when <code>wctrd</code> restarts.</p>
     <div class="grid">
       {{ range .Site.Params.planned }}
       <div class="card"><h3>{{ .name }} <small>planned</small></h3><p>{{ .what | markdownify }}</p></div>
@@ -90,9 +99,9 @@
   <section id="stats" style="padding-top:10px"><div class="wrap">
     <div class="stats">
       <div><div class="n">{{ len .Site.Params.repos }}</div><div class="l">repositories: the engine and the playground</div></div>
-      <div><div class="n">M1</div><div class="l">the engine milestone in progress: pull, run, ps, logs, rm, inspect</div></div>
+      <div><div class="n">3.4 ms</div><div class="l">warm container start on one core (cold 610 ms); not yet compared to a reference runtime</div></div>
       <div><div class="n">{{ len .Site.Params.planned }}</div><div class="l">roadmap items, all planned</div></div>
-      <div><div class="n">0</div><div class="l">releases so far</div></div>
+      <div><div class="n">1</div><div class="l">release: engine v0.1.0, with <code>go install github.com/go-wasmcontainers/engine/cmd/wctr@v0.1.0</code></div></div>
     </div>
   </div></section>
 

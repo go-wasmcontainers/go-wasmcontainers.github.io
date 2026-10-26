@@ -38,13 +38,13 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   bandText = "#dcf7fa"
 
 # Each repo card. Everything here is what the repository's own description and
-# status say today; "status" is "in progress" or "planned" and nothing is
-# marked shipped, because nothing has been released.
+# status say today; "status" is the release or "planned", and only what a
+# release carries is marked shipped.
 # "blurb" = drawn from the repository's README / description.
 [[params.repos]]
   name = "engine"
-  status = "in progress"
-  blurb = "The `wctrd` daemon and the `wctr` command: a container engine for WASI (`wasip1`) workloads, compatible with the Docker Engine API, in pure Go. Its first milestone, **M1**, is native with a wazero executor and the commands `wctr pull`, `run`, `ps`, `logs`, `rm`, `rmi`, `inspect` and `images`. The OCI image code (reference grammar, registry pull with token authentication, manifest and index parsing, layout) and the root filesystem are being written against the specifications they follow."
+  status = "v0.1.0 released"
+  blurb = "The `wctrd` daemon and the `wctr` command: a container engine for WASI (`wasip1`) workloads, compatible with the Docker Engine API, in pure Go. **v0.1.0** (milestone M1) runs natively on Linux and macOS with a wazero executor: `wctr pull`, `images`, `run`, `ps`, `logs`, `rm`, `rmi`, `inspect`, `kill` and `version`, against an OCI image layout or a registry. No networking, `exec`, attach or build yet. Install with `go install github.com/go-wasmcontainers/engine/cmd/wctr@v0.1.0` (and `cmd/wctrd`)."
 
 [[params.repos]]
   name = "playground"
