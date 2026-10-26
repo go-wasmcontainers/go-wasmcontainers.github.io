@@ -44,12 +44,12 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.repos]]
   name = "engine"
   status = "in progress"
-  blurb = "A Docker-compatible container engine for WASI (`wasip1`) workloads, in pure Go. Its first milestone, **M1**, is native with a wazero executor and the commands `pull`, `run`, `ps`, `logs`, `rm` and `inspect`. The OCI image code (reference grammar, registry pull with token authentication, manifest and index parsing, layout) and the root filesystem are being written against the specifications they follow."
+  blurb = "The `wctrd` daemon and the `wctr` command: a container engine for WASI (`wasip1`) workloads, compatible with the Docker Engine API, in pure Go. Its first milestone, **M1**, is native with a wazero executor and the commands `wctr pull`, `run`, `ps`, `logs`, `rm`, `rmi`, `inspect` and `images`. The OCI image code (reference grammar, registry pull with token authentication, manifest and index parsing, layout) and the root filesystem are being written against the specifications they follow."
 
 [[params.repos]]
   name = "playground"
   status = "planned"
-  blurb = "An in-browser container playground: a terminal that runs `docker` against WASI containers, for cloud and container training labs. **Not started**: it needs the engine's executor to run in a browser worker."
+  blurb = "An in-browser container playground: a terminal that runs `wctr` against WASI containers, for cloud and container training labs. **Not started**: it needs the engine's executor to run in a browser worker."
 
 # What is planned, as one list so the page's counts are derived from it and
 # never typed beside it.
@@ -59,10 +59,10 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 
 [[params.planned]]
   name = "A shell and exec"
-  what = "`docker exec` and an interactive shell, through a WASIX subset."
+  what = "`wctr exec` and an interactive shell, through a WASIX subset."
 
 [[params.planned]]
-  name = "docker build"
+  name = "Image build"
   what = "Building an image from a Dockerfile."
 
 [[params.planned]]
