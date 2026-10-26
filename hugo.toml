@@ -52,6 +52,11 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   blurb = "`wctr-relay`, the classroom relay and firewall: students' engines connect to it over one secure WebSocket; it gives every container an address and a DNS name and checks every flow against security groups modelled on OpenStack Neutron (default deny, both ends, stateful), with a gRPC control API (Connect) and OpenID Connect sign-in. **v0.2.0** adds the [live flow map](https://go-wasmcontainers.github.io/docs/latest/relay/flowmap/): a page the relay serves that draws who talks to whom, refused flows in red, tested in Chromium and Firefox. The engine's network driver and the browser path are next. Binaries (with the flow map) on the [releases](https://github.com/go-wasmcontainers/relay/releases) page."
 
 [[params.repos]]
+  name = "dashboard"
+  status = "v0.1.0 released, live demo"
+  blurb = "A graphical dashboard for the engine — containers, images, volumes and a `wctr` terminal — built with go-widgets, running in the browser on the same engine and API as `wctr`; every action shows the `wctr` command it stands for. [Live demo](https://go-wasmcontainers.github.io/dashboard/). The Volumes view waits for engine volumes, and it polls every 2 s until the engine serves `/events`. It is planned to become the playground's main UI."
+
+[[params.repos]]
   name = "playground"
   status = "v0.1.0 released, live"
   blurb = "An in-browser container playground: [a terminal that runs `wctr`](https://go-wasmcontainers.github.io/playground/) against WASI containers, with no server, for cloud and container training labs. `pull`, `run`, `ps`, `logs`, `rm`, `rmi`, `images`, `inspect`, `kill`, with the images `hello`, `greet`, `lab`, `age`, `go-md2man` and `shfmt` kept in the browser across reloads. No stdin, shell or networking yet. Released as v0.1.0."
