@@ -48,8 +48,8 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 
 [[params.repos]]
   name = "relay"
-  status = "v0.1.0 released"
-  blurb = "`wctr-relay`, the classroom relay and firewall: students' engines connect to it over one secure WebSocket; it gives every container an address and a DNS name and checks every flow against security groups modelled on OpenStack Neutron (default deny, both ends, stateful), with a flow log, a gRPC control API (Connect) and OpenID Connect sign-in. **v0.1.0** ships milestones M-relay-1 and M-relay-2, tested natively; the engine's network driver, the browser path and the live flow map are next. Install with `go install github.com/go-wasmcontainers/relay/cmd/wctr-relay@v0.1.0`."
+  status = "v0.2.0 released"
+  blurb = "`wctr-relay`, the classroom relay and firewall: students' engines connect to it over one secure WebSocket; it gives every container an address and a DNS name and checks every flow against security groups modelled on OpenStack Neutron (default deny, both ends, stateful), with a gRPC control API (Connect) and OpenID Connect sign-in. **v0.2.0** adds the [live flow map](https://go-wasmcontainers.github.io/docs/latest/relay/flowmap/): a page the relay serves that draws who talks to whom, refused flows in red, tested in Chromium and Firefox. The engine's network driver and the browser path are next. Binaries (with the flow map) on the [releases](https://github.com/go-wasmcontainers/relay/releases) page."
 
 [[params.repos]]
   name = "playground"
@@ -64,7 +64,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 
 [[params.planned]]
   name = "Classroom relay"
-  what = "The relay itself shipped in relay v0.1.0; planned: containers in the playground reaching each other through it (the engine's network driver and the browser path), the live flow map, and high availability across relays. [Relay docs](https://go-wasmcontainers.github.io/docs/latest/relay/), [design](https://go-wasmcontainers.github.io/docs/latest/design/classroom-network/)."
+  what = "The relay and its live flow map shipped (relay v0.1.0, v0.2.0); planned: containers in the playground reaching each other through it (the engine's network driver and the browser path), and high availability across relays. [Relay docs](https://go-wasmcontainers.github.io/docs/latest/relay/), [design](https://go-wasmcontainers.github.io/docs/latest/design/classroom-network/)."
 
 [[params.planned]]
   name = "A shell and exec"
