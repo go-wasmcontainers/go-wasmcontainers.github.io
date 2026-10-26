@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ .Site.Title }} — containers that are WASI modules</title>
-<meta name="description" content="go-wasmcontainers is a container engine, compatible with the Docker Engine API, whose containers are WASI (wasip1/wasm) modules, with an in-browser playground for cloud and container training labs, live at /playground/. Engine v0.8.0 is released. Pure Go, CGO_ENABLED=0.">
+<meta name="description" content="go-wasmcontainers is a container engine, compatible with the Docker Engine API, whose containers are WASI (wasip1/wasm) modules, with an in-browser playground for cloud and container training labs, live at /playground/. Engine v0.9.0 is released. Pure Go, CGO_ENABLED=0.">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 {{ partial "styles.html" . }}
 {{ partial "btn-try-style.html" . }}
@@ -20,12 +20,12 @@
   <div class="hero"><div class="wrap">
     <div>
       <h1 class="head">wctr commands,<br><span class="accent">WASI containers.</span></h1>
-      <p class="sub"><b>A container here is a WebAssembly module.</b> The <code>wctrd</code> daemon listens on <code>/var/run/wctr.sock</code> and is compatible with the Docker Engine API; <code>wctr</code> is the command a lab teaches and the learner types; the image is an OCI image with <code>os=wasip1</code> and <code>arch=wasm</code>, run by <a href="https://wazero.io">wazero</a> instead of a Linux kernel. <b>Engine v0.8.0 is released, and the playground is live</b>: <code>wctr</code> runs in a browser tab, with no server, works offline, completes with Tab like a shell, and keeps its containers across reloads. No networking, shell or stdin yet. Pure Go, <code>CGO_ENABLED=0</code>. BSD-3-Clause.</p>
+      <p class="sub"><b>A container here is a WebAssembly module.</b> The <code>wctrd</code> daemon listens on <code>/var/run/wctr.sock</code> and is compatible with the Docker Engine API; <code>wctr</code> is the command a lab teaches and the learner types; the image is an OCI image with <code>os=wasip1</code> and <code>arch=wasm</code>, run by <a href="https://wazero.io">wazero</a> instead of a Linux kernel. <b>Engine v0.9.0 is released, and the playground is live</b>: <code>wctr</code> runs in a browser tab, with no server, works offline, completes with Tab like a shell, and keeps its containers across reloads. No networking, shell or stdin yet. Pure Go, <code>CGO_ENABLED=0</code>. BSD-3-Clause.</p>
       <div class="cta">
         <a class="btn btn-try" href="https://go-wasmcontainers.github.io/playground/">{{ partial "icons/browser.html" . }}Try it in your browser</a>
         <a class="btn btn-primary" href="https://go-wasmcontainers.github.io/docs/">{{ partial "icons/book.html" . }}Read the documentation →</a>
       </div>
-      <div class="trust"><span><b>wasip1</b> images, OCI-compatible</span><span><b>v0.8.0</b> released</span><span><b>live</b> in the browser</span><span><b>CGO=0</b> pure Go</span></div>
+      <div class="trust"><span><b>wasip1</b> images, OCI-compatible</span><span><b>v0.9.0</b> released</span><span><b>live</b> in the browser</span><span><b>CGO=0</b> pure Go</span></div>
     </div>
     <div class="term">
       <div class="bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span class="t">wctr — zsh</span></div>
@@ -90,7 +90,7 @@ probe        latest   ae7fb9d7cefb   12 hours ago   811kB</span>
   <section id="roadmap" style="padding-top:10px"><div class="wrap">
     <span class="eyebrow">Roadmap</span>
     <h2>What is <i>planned</i>, and only that.</h2>
-    <p class="lead">Nothing below exists yet. It is listed so a reader can tell what engine v0.8.0 and the playground do not do: no networking, <code>exec</code>, attach or build; no stdin or shell in the playground; no <code>tar+zstd</code> layers.</p>
+    <p class="lead">Nothing below exists yet. It is listed so a reader can tell what engine v0.9.0 and the playground do not do: no networking, <code>exec</code>, attach or build; no stdin or shell in the playground.</p>
     <div class="grid">
       {{ range .Site.Params.planned }}
       <div class="card"><h3>{{ .name }} <small>planned</small></h3><p>{{ .what | markdownify }}</p></div>
@@ -103,7 +103,7 @@ probe        latest   ae7fb9d7cefb   12 hours ago   811kB</span>
       <div><div class="n">{{ len .Site.Params.repos }}</div><div class="l">repositories with code: the engine, the relay, the playground and the dashboard</div></div>
       <div><div class="n">3.4 ms</div><div class="l">warm container start on one core (cold 610 ms); not yet compared to a reference runtime</div></div>
       <div><div class="n">{{ len .Site.Params.planned }}</div><div class="l">roadmap items, all planned</div></div>
-      <div><div class="n">9</div><div class="l">engine releases, v0.1.0 to v0.8.0: <code>go install github.com/go-wasmcontainers/engine/cmd/wctr@v0.8.0</code></div></div>
+      <div><div class="n">10</div><div class="l">engine releases, v0.1.0 to v0.9.0: <code>go install github.com/go-wasmcontainers/engine/cmd/wctr@v0.9.0</code></div></div>
     </div>
   </div></section>
 
