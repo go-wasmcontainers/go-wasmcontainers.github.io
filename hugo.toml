@@ -64,7 +64,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 
 [[params.planned]]
   name = "Classroom relay"
-  what = "The relay itself shipped in relay v0.1.0; planned: containers in the playground reaching each other through it (the engine's network driver and the browser path), the live flow map, and high availability across relays. [Design](https://go-wasmcontainers.github.io/docs/main/design/classroom-network/)."
+  what = "The relay itself shipped in relay v0.1.0; planned: containers in the playground reaching each other through it (the engine's network driver and the browser path), the live flow map, and high availability across relays. [Relay docs](https://go-wasmcontainers.github.io/docs/latest/relay/), [design](https://go-wasmcontainers.github.io/docs/latest/design/classroom-network/)."
 
 [[params.planned]]
   name = "A shell and exec"
