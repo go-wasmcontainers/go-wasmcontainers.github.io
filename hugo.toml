@@ -58,6 +58,10 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   what = "Containers that listen and connect, through the WasmEdge socket ABI."
 
 [[params.planned]]
+  name = "Classroom relay"
+  what = "Planned: a classroom relay with security groups. Students' browsers reach each other's containers through a relay on the teacher's laptop that is also a firewall, with rules modelled on OpenStack Neutron and a gRPC control API. [Design](https://go-wasmcontainers.github.io/docs/main/design/classroom-network/)."
+
+[[params.planned]]
   name = "A shell and exec"
   what = "`wctr exec` and an interactive shell, through a WASIX subset."
 
