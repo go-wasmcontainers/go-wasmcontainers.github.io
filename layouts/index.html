@@ -20,11 +20,10 @@
   <div class="hero"><div class="wrap">
     <div>
       <h1 class="head">wctr commands,<br><span class="accent">WASI containers.</span></h1>
-      <p class="sub"><b>A container here is a WebAssembly module.</b> The <code>wctrd</code> daemon listens on <code>/var/run/wctr.sock</code> and is compatible with the Docker Engine API; <code>wctr</code> is the command a lab teaches and the learner types; the image is an OCI image with <code>os=wasip1</code> and <code>arch=wasm</code>, run by <a href="https://wazero.io">wazero</a> instead of a Linux kernel. <b>Engine v0.10.0 is released (with networking), and the playground is live</b>: <code>wctr</code> runs in a browser tab, with no server, works offline, completes with Tab like a shell, and keeps its containers across reloads. Networking is not in the playground yet; no shell or stdin either. Pure Go, <code>CGO_ENABLED=0</code>. BSD-3-Clause.</p>
-      <div class="cta">
-        <a class="btn btn-try" href="https://go-wasmcontainers.github.io/playground/">{{ partial "icons/browser.html" . }}Try it in your browser</a>
-        <a class="btn btn-primary" href="https://go-wasmcontainers.github.io/docs/">{{ partial "icons/book.html" . }}Read the documentation →</a>
-      </div>
+      <p class="sub"><b>A container here is a WebAssembly module.</b> The <code>wctrd</code> daemon listens on <code>/var/run/wctr.sock</code> and is compatible with the Docker Engine API; <code>wctr</code> is the command a lab teaches and the learner types; the image is an OCI image with <code>os=wasip1</code> and <code>arch=wasm</code>, run by <a href="https://wazero.io">wazero</a> instead of a Linux kernel. <b>Engine v0.10.0 is released (with networking), and the playground is live</b>: <code>wctr</code> runs in a browser tab, with no server, works offline, completes with Tab like a shell, and keeps its containers across reloads. Networking is not in the playground yet; no shell or stdin either.{{ if not (partial "mantra-on.html" .) }} Pure Go, <code>CGO_ENABLED=0</code>. BSD-3-Clause.{{ end }}</p>
+      {{/* The row is the kit's: [[params.cta]] in hugo.toml, rendered docs then try
+           (landingkit v0.14.0), and `landingkit check` in CI fails any other order. */}}
+      {{ partial "cta.html" . }}
       <div class="trust"><span><b>wasip1</b> images, OCI-compatible</span><span><b>v0.10.0</b> released</span><span><b>live</b> in the browser</span><span><b>CGO=0</b> pure Go</span></div>
     </div>
     <div class="term">
@@ -115,6 +114,8 @@ probe        latest   ae7fb9d7cefb   12 hours ago   811kB</span>
     </div>
   </div></section>
 
-  <footer><div class="wrap"><span>© the go-wasmcontainers authors · BSD-3-Clause</span><span>Pure Go · CGO_ENABLED=0 · no frameworks</span></div></footer>
+  {{/* The licence and "Pure Go · CGO_ENABLED=0" are the mantra strip's; the footer
+       repeats them only when the strip is off (`landingkit check` fails otherwise). */}}
+  <footer><div class="wrap"><span>© the go-wasmcontainers authors{{ if not (partial "mantra-on.html" .) }} · BSD-3-Clause{{ end }}</span>{{ if not (partial "mantra-on.html" .) }}<span>Pure Go · CGO_ENABLED=0 · no frameworks</span>{{ end }}</div></footer>
 </body>
 </html>

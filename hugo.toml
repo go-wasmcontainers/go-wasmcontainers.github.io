@@ -37,6 +37,19 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   statsEnd = "#caf3f8"
   bandText = "#dcf7fa"
 
+# The hero's two buttons. The kit's cta.html renders them in ITS order (docs,
+# then try), whatever order they are listed in here; `landingkit check` in CI
+# fails a built page whose row is out of it.
+[[params.cta]]
+  kind  = "docs"
+  href  = "https://go-wasmcontainers.github.io/docs/"
+  label = "Read the documentation →"
+
+[[params.cta]]
+  kind  = "try"
+  href  = "https://go-wasmcontainers.github.io/playground/"
+  label = "Try it in your browser"
+
 # Each repo card. Everything here is what the repository's own description and
 # status say today; "status" is the release or "planned", and only what a
 # release carries is marked shipped.
