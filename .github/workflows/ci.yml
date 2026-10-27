@@ -25,6 +25,11 @@ jobs:
           hugo-version: "0.168.0"
           extended: true
       - run: hugo --minify
+      # The hero's buttons are in the kit's order (docs, then try), and nothing
+      # the mantra strip says is said twice. The checker is the one the landing's
+      # go.mod pins: `go run` inside a module that requires landingkit uses it.
+      - name: the page follows the kit's rules (landingkit check)
+        run: go run github.com/go-fleettools/landingkit/cmd/landingkit check public
       # A page that builds and says nothing is a page nobody notices is empty.
       - name: every repository is on it
         run: |
