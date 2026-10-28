@@ -78,7 +78,7 @@ probe        latest   ae7fb9d7cefb   12 hours ago   811kB</span>
 
   <section id="repos" style="padding-top:10px"><div class="wrap">
     <span class="eyebrow">Repositories</span>
-    <h2>The engine, <i>its relay, its playground and its dashboard</i>.</h2>
+    <h2>The engine, <i>and everything around it</i>.</h2>
     <div class="grid">
       {{ range .Site.Params.repos }}
       <div class="card"><h3><a href="https://github.com/go-wasmcontainers/{{ .name }}"><code>{{ .name }}</code></a> <small>{{ .status }}</small></h3><p>{{ .blurb | markdownify }}</p></div>
@@ -99,7 +99,7 @@ probe        latest   ae7fb9d7cefb   12 hours ago   811kB</span>
 
   <section id="stats" style="padding-top:10px"><div class="wrap">
     <div class="stats">
-      <div><div class="n">{{ len .Site.Params.repos }}</div><div class="l">repositories with code: the engine, the relay, the playground and the dashboard</div></div>
+      <div><div class="n">{{ len .Site.Params.repos }}</div><div class="l">repositories with code: the engine, the relay, the playground, the dashboard, build, compose, the shell and gpu</div></div>
       <div><div class="n">3.4 ms</div><div class="l">warm container start on one core (cold 610 ms); not yet compared to a reference runtime</div></div>
       <div><div class="n">{{ len .Site.Params.planned }}</div><div class="l">roadmap items, all planned</div></div>
       <div><div class="n">11</div><div class="l">engine releases, v0.1.0 to v0.10.0: <code>go install github.com/go-wasmcontainers/engine/cmd/wctr@v0.10.0</code></div></div>
