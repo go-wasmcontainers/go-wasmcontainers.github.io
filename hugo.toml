@@ -61,8 +61,28 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 
 [[params.repos]]
   name = "relay"
+  status = "v0.3.0 released"
+  blurb = "`wctr-relay`, the classroom relay and firewall (**v0.3.0** adds `--cors-origin`, so a page served from another origin, such as the playground on GitHub Pages, can reach it): students' engines connect to it over one secure WebSocket; it gives every container an address and a DNS name and checks every flow against security groups modelled on OpenStack Neutron (default deny, both ends, stateful), with a gRPC control API (Connect) and OpenID Connect sign-in. **v0.2.0** adds the [live flow map](https://go-wasmcontainers.github.io/docs/latest/relay/flowmap/): a page the relay serves that draws who talks to whom, refused flows in red, tested in Chromium and Firefox. The engine's network driver and the browser path are next. Binaries (with the flow map) on the [releases](https://github.com/go-wasmcontainers/relay/releases) page."
+
+[[params.repos]]
+  name = "build"
   status = "v0.2.0 released"
-  blurb = "`wctr-relay`, the classroom relay and firewall: students' engines connect to it over one secure WebSocket; it gives every container an address and a DNS name and checks every flow against security groups modelled on OpenStack Neutron (default deny, both ends, stateful), with a gRPC control API (Connect) and OpenID Connect sign-in. **v0.2.0** adds the [live flow map](https://go-wasmcontainers.github.io/docs/latest/relay/flowmap/): a page the relay serves that draws who talks to whom, refused flows in red, tested in Chromium and Firefox. The engine's network driver and the browser path are next. Binaries (with the flow map) on the [releases](https://github.com/go-wasmcontainers/relay/releases) page."
+  blurb = "`wctr build`: OCI images from a Containerfile (or a Dockerfile) for the engine, through its API. Multi-stage builds, a build cache, `.containerignore`; exec-form `RUN` works now. **Shell-form `RUN` is in progress** (it needs a shell image and the engine's process spawning). A standalone `wctr-build` until it is wired into `wctr`; it needs `wctrd` v0.12.0 or later. [Docs](https://go-wasmcontainers.github.io/docs/latest/build/)."
+
+[[params.repos]]
+  name = "compose"
+  status = "v0.1.0 released"
+  blurb = "`wctr compose`: multi-container applications from Compose files in YAML, JSON or HCL2, which load to the same model; `up`, `down`, `ps`, `logs`, `start`, `stop`, `restart`, `rm`, `pull`, `images`, `config`. A standalone `wctr-compose` for now. No network aliases, published ports or health checks yet. [Docs](https://go-wasmcontainers.github.io/docs/latest/compose/)."
+
+[[params.repos]]
+  name = "shell"
+  status = "in progress"
+  blurb = "A POSIX shell for WASI containers: `sh` (built on mvdan.cc/sh) and a `wasix` guest package for the small WASIX subset it needs to start programs. **The guest side exists; the engine's process spawning and a base image are in progress**, so `RUN a && b` and `wctr exec` are not available yet. No release. [Docs](https://go-wasmcontainers.github.io/docs/latest/shell/)."
+
+[[params.repos]]
+  name = "gpu"
+  status = "v0.1.0 released"
+  blurb = "An ONNX model loader and pure-Go CPU operators (122 ONNX node tests and MNIST-12 pass). **GPU inference (wasi-nn), wasi:webgpu compute and rendering are planned**; only the CPU path exists. [Docs](https://go-wasmcontainers.github.io/docs/latest/gpu/)."
 
 [[params.repos]]
   name = "dashboard"

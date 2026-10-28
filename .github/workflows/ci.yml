@@ -33,7 +33,7 @@ jobs:
       # A page that builds and says nothing is a page nobody notices is empty.
       - name: every repository is on it
         run: |
-          for repo in engine playground; do
+          for repo in engine relay playground dashboard build compose shell gpu; do
             grep -q "go-wasmcontainers/$repo" public/index.html \
               || { echo "::error::$repo is not on the page"; exit 1; }
           done
