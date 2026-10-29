@@ -50,71 +50,71 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   href  = "https://go-wasmcontainers.github.io/playground/"
   label = "Try it in your browser"
 
-# Each repo card. Everything here is what the repository's own description and
-# status say today; "status" is the release or "planned", and only what a
-# release carries is marked shipped.
+# Each repo card. Everything here is what the repository's own README and
+# release notes say today; "status" is the release or "planned", and only what a
+# release carries is marked shipped. The full history is on the docs' roadmap.
 # "blurb" = drawn from the repository's README / description.
 [[params.repos]]
   name = "engine"
-  status = "v0.12.0 released"
-  blurb = "The `wctrd` daemon and the `wctr` command: a container engine for WASI (`wasip1`) workloads, compatible with the Docker Engine API, in pure Go. **v0.12.0** adds `wctr commit` and `wctr tag`, dangling `<none>` images, image load and container archive endpoints (1 GiB limit on those two routes), the full image config, and the extension hook `wctr build` uses; **v0.11.0** lets a class network be joined at run time (the playground's \"Join class\"); v0.10.0 adds networking: guests get sockets (a stock Go program using stealthrocket/net runs unchanged), built-in DNS by container name, the networks `bridge` and `none` (`wctr network create|ls|inspect|rm`, `run --network`), and a class network through the relay (`wctrd --relay`); `wctrd --wasi engine` is now the default. Not in the playground yet. v0.9.0 pulls `tar+zstd` layers (bounded, fuzzed) and enables WebAssembly exception handling natively; v0.8.0 adds named volumes (`wctr volume create|ls|inspect|rm|prune`, `run -v NAME:/path[:ro]`; host paths are refused); **v0.7.0** `wctr stats` (memory against its limit, bytes written, pids; CPU is not measured); **v0.6.0** `wctr events` / `GET /events`; v0.5.0 adds `wctr start`, `stop` and `restart`; **v0.4.0** made containers survive a `wctrd` restart and a page reload (running ones come back exited 137) and added `wctr system df`, `system prune` and `diff`; v0.3.0 adds `wctr completion bash|zsh|fish|powershell` and `cli/lineedit`, a pure-Go line editor with completion. It runs natively on Linux and macOS with a wazero executor (since v0.1.0): `wctr pull`, `images`, `run`, `ps`, `logs`, `rm`, `rmi`, `inspect`, `kill` and `version`, against an OCI image layout or a registry; v0.2.0 adds the browser executor (`runtime/browser`), the shared WASI host (`wasi`), `api/inproc`, the `cli` package and `RegistryOptions.Mirrors`. No `exec` or attach yet, and no published ports. Install with `go install github.com/go-wasmcontainers/engine/cmd/wctr@v0.12.0` (and `cmd/wctrd`)."
+  status = "v0.20.0 released"
+  blurb = "The `wctrd` daemon and the `wctr` command: a container engine for WASI (`wasip1`) workloads, compatible with the Docker Engine API, in pure Go. **v0.20.0** adds `wctr exec`; v0.17.0 the WASIX process subset (`sh`, pipelines and shell-form `RUN` run in containers); v0.14.0 network aliases, several networks per container and `network connect`, `disconnect` and `prune`; v0.12.0 `wctr commit` and `tag`; v0.10.0 networking (sockets for guests, DNS by container name, a class network through the relay); before that `tar+zstd` layers, named volumes, `wctr events` and `stats`, containers that survive a restart, shell completion and the browser executor. **`wctr` is now a module of its own with `wctr build` and `wctr compose` built in** (`cmd/wctr` v0.1.0): install it and the daemon with two `go install` commands. No attach and no published ports (`-p` is planned natively for v0.22.0). [Roadmap](https://go-wasmcontainers.github.io/docs/latest/roadmap/)."
 
 [[params.repos]]
   name = "relay"
-  status = "v0.3.0 released"
-  blurb = "`wctr-relay`, the classroom relay and firewall (**v0.3.0** adds `--cors-origin`, so a page served from another origin, such as the playground on GitHub Pages, can reach it): students' engines connect to it over one secure WebSocket; it gives every container an address and a DNS name and checks every flow against security groups modelled on OpenStack Neutron (default deny, both ends, stateful), with a gRPC control API (Connect) and OpenID Connect sign-in. **v0.2.0** adds the [live flow map](https://go-wasmcontainers.github.io/docs/latest/relay/flowmap/): a page the relay serves that draws who talks to whom, refused flows in red, tested in Chromium and Firefox. The engine's network driver and the browser path are next. Binaries (with the flow map) on the [releases](https://github.com/go-wasmcontainers/relay/releases) page."
+  status = "v0.3.1 released"
+  blurb = "`wctr-relay`, the classroom relay and firewall (**v0.3.0** adds `--cors-origin`, so a page served from another origin, such as the playground on GitHub Pages, can reach it; v0.3.1 updates `golang.org/x/net`): students' engines connect to it over one secure WebSocket; it gives every container an address and a DNS name and checks every flow against security groups modelled on OpenStack Neutron (default deny, both ends, stateful), with a gRPC control API (Connect) and OpenID Connect sign-in. **v0.2.0** adds the [live flow map](https://go-wasmcontainers.github.io/docs/latest/relay/flowmap/): a page the relay serves that draws who talks to whom, refused flows in red. Binaries (with the flow map) on the [releases](https://github.com/go-wasmcontainers/relay/releases) page."
 
 [[params.repos]]
   name = "build"
-  status = "v0.2.0 released"
-  blurb = "`wctr build`: OCI images from a Containerfile (or a Dockerfile) for the engine, through its API. Multi-stage builds, a build cache, `.containerignore`; exec-form `RUN` works now. **Shell-form `RUN` is in progress** (it needs a shell image and the engine's process spawning). A standalone `wctr-build` until it is wired into `wctr`; it needs `wctrd` v0.12.0 or later. [Docs](https://go-wasmcontainers.github.io/docs/latest/build/)."
+  status = "v0.3.0 released"
+  blurb = "`wctr build`: OCI images from a Containerfile (or a Dockerfile) for the engine, through its API. Multi-stage builds, a build cache, `.containerignore`; exec-form `RUN`, and **shell-form `RUN` since v0.3.0** (on an image with a shell, with engine v0.17.0 or later). Built into `wctr`; the standalone `wctr-build` remains. [Docs](https://go-wasmcontainers.github.io/docs/latest/build/)."
 
 [[params.repos]]
   name = "compose"
-  status = "v0.1.0 released"
-  blurb = "`wctr compose`: multi-container applications from Compose files in YAML, JSON or HCL2, which load to the same model; `up`, `down`, `ps`, `logs`, `start`, `stop`, `restart`, `rm`, `pull`, `images`, `config`. A standalone `wctr-compose` for now. No network aliases, published ports or health checks yet. [Docs](https://go-wasmcontainers.github.io/docs/latest/compose/)."
+  status = "v0.3.1 released"
+  blurb = "`wctr compose`: multi-container applications from Compose files in YAML, JSON or HCL2, which load to the same model; `up`, `down`, `ps`, `logs`, `start`, `stop`, `restart`, `rm`, `pull`, `images`, `build`, `config`. **Services reach each other by service name and aliases, on as many networks as they declare** (v0.3.0). Built into `wctr`. No published ports, restart policies or health checks yet. [Docs](https://go-wasmcontainers.github.io/docs/latest/compose/)."
 
 [[params.repos]]
   name = "shell"
-  status = "in progress"
-  blurb = "A POSIX shell for WASI containers: `sh` (built on mvdan.cc/sh) and a `wasix` guest package for the small WASIX subset it needs to start programs. **The guest side exists; the engine's process spawning and a base image are in progress**, so `RUN a && b` and `wctr exec` are not available yet. No release. [Docs](https://go-wasmcontainers.github.io/docs/latest/shell/)."
+  status = "v0.1.0 released"
+  blurb = "A POSIX shell for WASI containers: `sh` (built on mvdan.cc/sh) and a `wasix` guest package for the small WASIX subset it needs to start programs, which the engine serves from v0.17.0. Its base image, `ghcr.io/go-wasmcontainers/shell:0.1.0`, carries `sh` and the coreutils (v0.4.0); **the image's registry package is not public yet (soon)**. [Docs](https://go-wasmcontainers.github.io/docs/latest/shell/)."
 
 [[params.repos]]
   name = "gpu"
-  status = "v0.1.0 released"
-  blurb = "An ONNX model loader and pure-Go CPU operators (122 ONNX node tests and MNIST-12 pass). **GPU inference (wasi-nn), wasi:webgpu compute and rendering are planned**; only the CPU path exists. [Docs](https://go-wasmcontainers.github.io/docs/latest/gpu/)."
+  status = "v0.4.0 released"
+  blurb = "GPU access for WASI containers: **wasi-nn** inference on the CPU and on WebGPU (WGSL kernels, proven on a real Apple GPU in CI: 123 of 123 ONNX tests pass) and **wasi:webgpu compute**, with a pure-Go ONNX loader and CPU operators. **Rendering to a dashboard pane is in progress** (the dashboard already has a Surfaces view). [Docs](https://go-wasmcontainers.github.io/docs/latest/gpu/)."
 
 [[params.repos]]
   name = "dashboard"
-  status = "v0.3.0 released, live demo"
-  blurb = "A graphical dashboard for the engine — containers, images, volumes and a `wctr` terminal — built with go-widgets, running in the browser on the same engine and API as `wctr`; every action shows the `wctr` command it stands for. [Live demo](https://go-wasmcontainers.github.io/dashboard/). **v0.3.0** runs on engine v0.8.0: it follows `GET /events` instead of polling, has a Volumes view (create, inspect, remove, prune, each showing its `wctr volume` line), a Stats tab per container (memory against its limit, bytes written, log size, pids; CPU `--` as it is not measured), and `-v NAME:/path[:ro]` in the run dialog; tested live in Chromium and Firefox. Start, Stop and Restart use `/start`, `/stop` and `/restart`. The standalone demo keeps its state in memory (nothing persists across a reload). It is now the default UI of the [live playground](https://go-wasmcontainers.github.io/playground/), on its persistent engine worker (the terminal-only page stays at `?ui=terminal`); the page is slower to be ready with it (1070 ms against 728 ms in Chromium), and a size reduction is in progress."
+  status = "v0.6.0 released, live demo"
+  blurb = "A graphical dashboard for the engine — containers, images, volumes, networks and a `wctr` terminal — built with go-widgets, running in the browser on the same engine and API as `wctr`; every action shows the `wctr` command it stands for. [Live demo](https://go-wasmcontainers.github.io/dashboard/). It follows the engine's event stream, has a Volumes view, a Stats tab, a Networks view with a Join class dialog (v0.5.0), and **a Surfaces view for GPU frames (v0.6.0)**. The standalone demo keeps its state in memory; in the playground it runs on the persistent engine worker."
 
 [[params.repos]]
   name = "playground"
-  status = "v0.2.0 released, live"
-  blurb = "An in-browser container playground: [a terminal that runs `wctr`](https://go-wasmcontainers.github.io/playground/) against WASI containers, with no server, for cloud and container training labs. **v0.2.0** runs engine v0.9.0 with completion, persistence and offline use: `pull`, `run` (with `-v` volumes), `ps`, `logs`, `rm`, `rmi`, `images`, `inspect`, `kill`, `start`, `stop`, `restart`, `diff`, `stats`, `events`, `volume` and `system df|prune`, with the images `hello`, `greet`, `lab`, `age`, `go-md2man`, `shfmt` and the C tools `lua`, `sqlite3` and `minigzip` kept in the browser across reloads. On the live site it now opens the dashboard (Containers, Images, Volumes, Terminal) by default, not yet in a tag (the latest is v0.2.0). No stdin, shell or networking yet."
+  status = "v0.3.0 released, live"
+  blurb = "An in-browser container playground: **the dashboard, with a `wctr` terminal**, running WASI containers in [a web page](https://go-wasmcontainers.github.io/playground/) with no server, for cloud and container training labs (the terminal alone is at `?ui=terminal`). **v0.3.0** adds networking in the browser (containers reach each other by name), **Join class** to a teacher's relay, and wasi-nn with the `mnist` image; it works offline and keeps its images and containers across reloads. No shell, no stdin, no `exec` and no published ports in the browser yet."
 
 # What is planned, as one list so the page's counts are derived from it and
 # never typed beside it.
 [[params.planned]]
-  name = "Networking in the playground"
-  what = "Engine v0.12.0 has networking (sockets, DNS by container name, networks); it is not live in the playground yet. The next milestone."
+  name = "Published ports"
+  what = "`wctr run -p`: natively planned for engine v0.22.0; in the browser planned (the service worker would route a path to the container's port)."
 
 [[params.planned]]
-  name = "Classroom relay"
-  what = "The relay and its live flow map shipped (relay v0.1.0, v0.2.0); planned: containers in the playground reaching each other through it (the engine's network driver and the browser path), and high availability across relays. [Relay docs](https://go-wasmcontainers.github.io/docs/latest/relay/), [design](https://go-wasmcontainers.github.io/docs/latest/design/classroom-network/)."
+  name = "Classroom relay, the rest"
+  what = "The relay and its live flow map shipped, and the playground can join a class; planned: ICMP and high availability across relays. [Relay docs](https://go-wasmcontainers.github.io/docs/latest/relay/), [design](https://go-wasmcontainers.github.io/docs/latest/design/classroom-network/)."
 
 [[params.planned]]
-  name = "A shell and exec"
-  what = "`wctr exec` and an interactive shell, through a WASIX subset."
+  name = "Shell and exec in the playground"
+  what = "A shell, pipes and `wctr exec` in the browser executor; the playground has none of them yet."
 
 [[params.planned]]
-  name = "Image build"
-  what = "Building an image from a Dockerfile."
+  name = "Attach and run -it"
+  what = "A terminal and stdin for a container's first process."
 
 [[params.planned]]
-  name = "Compose"
-  what = "Several containers described in one file."
+  name = "GPU rendering"
+  what = "Rendering to a dashboard pane is in progress, and input back to the guest is planned."
 
 [[params.planned]]
   name = "A mini-Kubernetes"
