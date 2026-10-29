@@ -71,8 +71,8 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 
 [[params.repos]]
   name = "compose"
-  status = "v0.4.0 released"
-  blurb = "`wctr compose`: multi-container applications from Compose files in YAML, JSON or HCL2, which load to the same model; `up`, `down`, `ps`, `logs`, `start`, `stop`, `restart`, `rm`, `pull`, `images`, `build`, `config`. **Services reach each other by service name and aliases, on as many networks as they declare** (v0.3.0). **Published ports** (v0.4.0): short and long `ports` syntax and `expose`; a port with no host address binds `127.0.0.1` on purpose, unlike the Compose spec, and it needs engine v0.22.0 or later. Built into `wctr`. No restart policies or health checks. [Docs](https://go-wasmcontainers.github.io/docs/latest/compose/)."
+  status = "v0.5.0 released"
+  blurb = "`wctr compose`: multi-container applications from Compose files in YAML, JSON or HCL2, which load to the same model; `up`, `down`, `ps`, `logs`, `start`, `stop`, `restart`, `rm`, `pull`, `images`, `build`, `config`. **Services reach each other by service name and aliases, on as many networks as they declare** (v0.3.0). **Published ports** (v0.4.0): short and long `ports` syntax and `expose`; a port with no host address binds `127.0.0.1` on purpose, unlike the Compose spec, and it needs engine v0.22.0 or later. **Restart policies** (v0.5.0): `restart` and `deploy.restart_policy` are applied (`deploy.restart_policy` wins; `delay` and `window` are not applied, the engine's backoff is), and `compose stop` ends a restart loop; it needs engine v0.25.0 or later. Built into `wctr`. No health checks yet: `service_healthy` fails at once. [Docs](https://go-wasmcontainers.github.io/docs/latest/compose/)."
 
 [[params.repos]]
   name = "shell"
