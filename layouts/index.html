@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ .Site.Title }} — containers that are WASI modules</title>
-<meta name="description" content="go-wasmcontainers is a container engine, compatible with the Docker Engine API, whose containers are WASI (wasip1/wasm) modules, with an in-browser playground for cloud and container training labs, live at /playground/. Engine v0.12.0 is released. Pure Go, CGO_ENABLED=0.">
+<meta name="description" content="go-wasmcontainers is a container engine, compatible with the Docker Engine API, whose containers are WASI (wasip1/wasm) modules, with an in-browser playground for cloud and container training labs, live at /playground/. Engine v0.20.0 is released. Pure Go, CGO_ENABLED=0.">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 {{ partial "styles.html" . }}
 {{ partial "btn-try-style.html" . }}
@@ -20,11 +20,11 @@
   <div class="hero"><div class="wrap">
     <div>
       <h1 class="head">wctr commands,<br><span class="accent">WASI containers.</span></h1>
-      <p class="sub"><b>A container here is a WebAssembly module.</b> The <code>wctrd</code> daemon listens on <code>/var/run/wctr.sock</code> and is compatible with the Docker Engine API; <code>wctr</code> is the command a lab teaches and the learner types; the image is an OCI image with <code>os=wasip1</code> and <code>arch=wasm</code>, run by <a href="https://wazero.io">wazero</a> instead of a Linux kernel. <b>Engine v0.12.0 is released (with networking), and the playground is live</b>: <code>wctr</code> runs in a browser tab, with no server, works offline, completes with Tab like a shell, and keeps its containers across reloads. Networking is not in the playground yet; no shell or stdin either.{{ if not (partial "mantra-on.html" .) }} Pure Go, <code>CGO_ENABLED=0</code>. BSD-3-Clause.{{ end }}</p>
+      <p class="sub"><b>A container here is a WebAssembly module.</b> The <code>wctrd</code> daemon listens on <code>/var/run/wctr.sock</code> and is compatible with the Docker Engine API; <code>wctr</code> is the command a lab teaches and the learner types; the image is an OCI image with <code>os=wasip1</code> and <code>arch=wasm</code>, run by <a href="https://wazero.io">wazero</a> instead of a Linux kernel. <b>Engine v0.20.0 is released (with networking, <code>exec</code>, build and compose), and the playground is live</b>: a dashboard and <code>wctr</code> in a browser tab, with no server, with networking and a Join class to a teacher's relay, working offline and keeping its containers across reloads. No shell or stdin in the playground yet.{{ if not (partial "mantra-on.html" .) }} Pure Go, <code>CGO_ENABLED=0</code>. BSD-3-Clause.{{ end }}</p>
       {{/* The row is the kit's: [[params.cta]] in hugo.toml, rendered docs then try
            (landingkit v0.14.0), and `landingkit check` in CI fails any other order. */}}
       {{ partial "cta.html" . }}
-      <div class="trust"><span><b>wasip1</b> images, OCI-compatible</span><span><b>v0.12.0</b> released</span><span><b>live</b> in the browser</span><span><b>CGO=0</b> pure Go</span></div>
+      <div class="trust"><span><b>wasip1</b> images, OCI-compatible</span><span><b>v0.20.0</b> released</span><span><b>live</b> in the browser</span><span><b>CGO=0</b> pure Go</span></div>
     </div>
     <div class="term">
       <div class="bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span class="t">wctr — zsh</span></div>
@@ -49,12 +49,7 @@ Status: Downloaded newer image for hello:latest</span>
 <span class="c-out">REPOSITORY   TAG      IMAGE ID       CREATED        SIZE
 greet        latest   068beee4f451   12 hours ago   2.45MB
 hello        latest   85c424cd2beb   12 hours ago   735kB
-probe        latest   ae7fb9d7cefb   12 hours ago   811kB</span>
-
-<span class="c-com"># planned, not started</span>
-<span class="c-cmd">$ wctr</span> exec -it &lt;container&gt; sh
-<span class="c-cmd">$ wctr</span> build .
-<span class="c-cmd">$ wctr</span> compose up</pre>
+probe        latest   ae7fb9d7cefb   12 hours ago   811kB</span></pre>
     </div>
   </div></div>
 
@@ -72,7 +67,7 @@ probe        latest   ae7fb9d7cefb   12 hours ago   811kB</span>
       <div class="card"><div class="ico">🔌</div><h3>Compatible with the Docker Engine API</h3><p><code>wctrd</code> answers that API (v1.47 is the version its reference is read from) on <code>/var/run/wctr.sock</code>, and <code>WCTR_HOST</code> points <code>wctr</code> elsewhere. Learners type <code>wctr</code> commands, whose shape is the one they know from containers at work.</p></div>
       <div class="card"><div class="ico">🧊</div><h3>WASI images</h3><p>An image is an OCI image whose platform is <code>os=wasip1</code>, <code>arch=wasm</code>; the layer is a module. Images are meant to be apt-like, built from <a href="https://github.com/go-pkgx">pkgx</a> <code>wasip1</code> bottles — a target go-pkgx is gaining now.</p></div>
       <div class="card"><div class="ico">⚙️</div><h3>wazero executor</h3><p>Containers run in <a href="https://wazero.io">wazero</a>, a pure-Go WebAssembly runtime: no cgo, no kernel namespaces, one static binary.</p></div>
-      <div class="card"><div class="ico">🌐</div><h3>Live: the browser</h3><p>The <a href="https://go-wasmcontainers.github.io/playground/">playground</a> is a terminal running <code>wctr</code> against WASI containers, entirely in a page, with the browser executor of engine v0.2.0. Images, pulls and containers survive a reload, and it works offline. Cold start is slower than wasmtime (first run of <code>hello</code>: 81 ms in Chromium, 291 ms in Firefox, against 23 ms for wasmtime in one CI run).</p></div>
+      <div class="card"><div class="ico">🌐</div><h3>Live: the browser</h3><p>The <a href="https://go-wasmcontainers.github.io/playground/">playground</a> is a dashboard and a terminal running <code>wctr</code> against WASI containers, entirely in a page, with the browser executor. Containers reach each other by name, a class can be joined, and images and containers survive a reload; it works offline. Cold start is slower than wasmtime (first run of <code>hello</code>: 81 ms in Chromium, 291 ms in Firefox, against 23 ms for wasmtime in one CI run).</p></div>
     </div>
   </div></section>
 
@@ -89,7 +84,7 @@ probe        latest   ae7fb9d7cefb   12 hours ago   811kB</span>
   <section id="roadmap" style="padding-top:10px"><div class="wrap">
     <span class="eyebrow">Roadmap</span>
     <h2>What is <i>planned</i>, and only that.</h2>
-    <p class="lead">Nothing below exists yet. It is listed so a reader can tell what engine v0.12.0 and the playground do not do: no <code>exec</code>, attach or published ports (and shell-form <code>RUN</code> in builds is in progress); no networking (yet), stdin or shell in the playground.</p>
+    <p class="lead">Nothing below exists yet. It is listed so a reader can tell what engine v0.20.0 and the playground do not do: no attach and no published ports; no <code>exec</code>, stdin or shell in the playground.</p>
     <div class="grid">
       {{ range .Site.Params.planned }}
       <div class="card"><h3>{{ .name }} <small>planned</small></h3><p>{{ .what | markdownify }}</p></div>
@@ -102,7 +97,7 @@ probe        latest   ae7fb9d7cefb   12 hours ago   811kB</span>
       <div><div class="n">{{ len .Site.Params.repos }}</div><div class="l">repositories with code: the engine, the relay, the playground, the dashboard, build, compose, the shell and gpu</div></div>
       <div><div class="n">3.4 ms</div><div class="l">warm container start on one core (cold 610 ms); not yet compared to a reference runtime</div></div>
       <div><div class="n">{{ len .Site.Params.planned }}</div><div class="l">roadmap items, all planned</div></div>
-      <div><div class="n">13</div><div class="l">engine releases, v0.1.0 to v0.12.0: <code>go install github.com/go-wasmcontainers/engine/cmd/wctr@v0.12.0</code></div></div>
+      <div><div class="n">21</div><div class="l">engine releases, v0.1.0 to v0.20.0: <code>go install github.com/go-wasmcontainers/engine/cmd/wctrd@v0.20.0</code> and <code>cmd/wctr@v0.1.0</code></div></div>
     </div>
   </div></section>
 
