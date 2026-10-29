@@ -56,8 +56,8 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 # "blurb" = drawn from the repository's README / description.
 [[params.repos]]
   name = "engine"
-  status = "v0.22.0 released"
-  blurb = "The `wctrd` daemon and the `wctr` command: a container engine for WASI (`wasip1`) workloads, compatible with the Docker Engine API, in pure Go. **v0.22.0** adds published ports (`run -p`, `-P`, `--expose`, `wctr port`; bound to `127.0.0.1` by default); v0.21.0 restored the Go client's list signatures; v0.20.0 adds `wctr exec`; v0.17.0 the WASIX process subset (`sh`, pipelines and shell-form `RUN` run in containers); v0.14.0 network aliases, several networks per container and `network connect`, `disconnect` and `prune`; v0.12.0 `wctr commit` and `tag`; v0.10.0 networking (sockets for guests, DNS by container name, a class network through the relay); before that `tar+zstd` layers, named volumes, `wctr events` and `stats`, containers that survive a restart, shell completion and the browser executor. **`wctr` is now a module of its own with `wctr build` and `wctr compose` built in** (`cmd/wctr` v0.1.0): install it and the daemon with two `go install` commands. No attach, and no `-p` in the browser yet. [Roadmap](https://go-wasmcontainers.github.io/docs/latest/roadmap/)."
+  status = "v0.24.0 released"
+  blurb = "The `wctrd` daemon and the `wctr` command: a container engine for WASI (`wasip1`) workloads, compatible with the Docker Engine API, in pure Go. **v0.24.0** adds `portmap.Virtual`, published ports with no sockets, the groundwork for `-p` in the browser (not live yet); v0.23.0 makes `wctr run` exit 125 when the daemon refuses the start (the container records 128); v0.22.0 adds published ports (`run -p`, `-P`, `--expose`, `wctr port`; bound to `127.0.0.1` by default); v0.21.0 restored the Go client's list signatures; v0.20.0 adds `wctr exec`; v0.17.0 the WASIX process subset (`sh`, pipelines and shell-form `RUN` run in containers); v0.14.0 network aliases, several networks per container and `network connect`, `disconnect` and `prune`; v0.12.0 `wctr commit` and `tag`; v0.10.0 networking (sockets for guests, DNS by container name, a class network through the relay); before that `tar+zstd` layers, named volumes, `wctr events` and `stats`, containers that survive a restart, shell completion and the browser executor. **`wctr` is now a module of its own with `wctr build` and `wctr compose` built in** (`cmd/wctr` v0.1.0): install it and the daemon with two `go install` commands. No attach, and no `-p` in the browser yet. [Roadmap](https://go-wasmcontainers.github.io/docs/latest/roadmap/)."
 
 [[params.repos]]
   name = "relay"
@@ -71,8 +71,8 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 
 [[params.repos]]
   name = "compose"
-  status = "v0.3.2 released"
-  blurb = "`wctr compose`: multi-container applications from Compose files in YAML, JSON or HCL2, which load to the same model; `up`, `down`, `ps`, `logs`, `start`, `stop`, `restart`, `rm`, `pull`, `images`, `build`, `config`. **Services reach each other by service name and aliases, on as many networks as they declare** (v0.3.0). Built into `wctr`. No published ports yet (coming in v0.4.0), restart policies or health checks. [Docs](https://go-wasmcontainers.github.io/docs/latest/compose/)."
+  status = "v0.4.0 released"
+  blurb = "`wctr compose`: multi-container applications from Compose files in YAML, JSON or HCL2, which load to the same model; `up`, `down`, `ps`, `logs`, `start`, `stop`, `restart`, `rm`, `pull`, `images`, `build`, `config`. **Services reach each other by service name and aliases, on as many networks as they declare** (v0.3.0). **Published ports** (v0.4.0): short and long `ports` syntax and `expose`; a port with no host address binds `127.0.0.1` on purpose, unlike the Compose spec, and it needs engine v0.22.0 or later. Built into `wctr`. No restart policies or health checks. [Docs](https://go-wasmcontainers.github.io/docs/latest/compose/)."
 
 [[params.repos]]
   name = "shell"
@@ -98,7 +98,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 # never typed beside it.
 [[params.planned]]
   name = "Published ports in the browser"
-  what = "`wctr run -p` in the playground is in progress, through a second origin; natively it shipped in engine v0.22.0."
+  what = "`wctr run -p` in the playground is in progress, through a second origin (the groundwork, `portmap.Virtual`, is in engine v0.24.0); natively it shipped in engine v0.22.0."
 
 [[params.planned]]
   name = "Classroom relay, the rest"
