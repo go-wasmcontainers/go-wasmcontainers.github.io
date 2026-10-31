@@ -76,8 +76,8 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 
 [[params.repos]]
   name = "shell"
-  status = "v0.2.0 released"
-  blurb = "A POSIX shell for WASI containers: `sh` (built on mvdan.cc/sh, with **a line editor on a terminal** since v0.2.0: arrow keys, history, Ctrl-C, Ctrl-D) and a `wasix` guest module (`wasix/v0.1.0`) for the small WASIX subset it needs to start programs, which the engine serves from v0.17.0; **`wasix/exec`** mirrors `os/exec` for WASI containers. Its base image, `ghcr.io/go-wasmcontainers/shell:0.2.0`, carries `sh` and the coreutils (v0.4.0; coreutils v0.5.0 is released but not in this image), and is **public**: `wctr pull ghcr.io/go-wasmcontainers/shell:0.2.0`. [Docs](https://go-wasmcontainers.github.io/docs/latest/shell/)."
+  status = "v0.3.0 released"
+  blurb = "A POSIX shell for WASI containers (**v0.3.0** updates its dependencies: coreutils, including `env CMD`, `xargs` and `find -exec`, and engine v0.29.2): `sh` (built on mvdan.cc/sh, with **a line editor on a terminal** since v0.2.0: arrow keys, history, Ctrl-C, Ctrl-D) and a `wasix` guest module (`wasix/v0.1.0`) for the small WASIX subset it needs to start programs, which the engine serves from v0.17.0; **`wasix/exec`** mirrors `os/exec` for WASI containers. The latest base image confirmed published, `ghcr.io/go-wasmcontainers/shell:0.2.0`, carries `sh` and the coreutils (v0.4.0), and is **public**: `wctr pull ghcr.io/go-wasmcontainers/shell:0.2.0`. [Docs](https://go-wasmcontainers.github.io/docs/latest/shell/)."
 
 [[params.repos]]
   name = "gpu"
@@ -86,13 +86,13 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 
 [[params.repos]]
   name = "dashboard"
-  status = "v0.7.0 released, live demo"
-  blurb = "A graphical dashboard for the engine — containers, images, volumes, networks and a `wctr` terminal — built with go-widgets, running in the browser on the same engine and API as `wctr`; every action shows the `wctr` command it stands for. [Live demo](https://go-wasmcontainers.github.io/dashboard/). It follows the engine's event stream, has a Volumes view, a Stats tab, a Networks view with a Join class dialog (v0.5.0), a Surfaces view for GPU frames (v0.6.0), and **Open shell (v0.7.0)**, the equivalent of `wctr exec -it CONTAINER sh`. The standalone demo keeps its state in memory; in the playground it runs on the persistent engine worker."
+  status = "v0.8.0 released, live demo"
+  blurb = "A graphical dashboard for the engine — containers, images, volumes, networks and a `wctr` terminal — built with go-widgets, running in the browser on the same engine and API as `wctr`; every action shows the `wctr` command it stands for. [Live demo](https://go-wasmcontainers.github.io/dashboard/). It follows the engine's event stream, has a Volumes view, a Stats tab, a Networks view with a Join class dialog (v0.5.0), a Surfaces view for GPU frames (v0.6.0), and Open shell (v0.7.0), the equivalent of `wctr exec -it CONTAINER sh`, and **surface input (v0.8.0)**: pointer and key events from a GPU pane reach the guest, with focus on a pane and F6 to leave it. The standalone demo keeps its state in memory; in the playground it runs on the persistent engine worker."
 
 [[params.repos]]
   name = "playground"
-  status = "v0.4.0 released, live"
-  blurb = "An in-browser container playground: **the dashboard, with a `wctr` terminal**, running WASI containers in [a web page](https://go-wasmcontainers.github.io/playground/) with no server, for cloud and container training labs (the terminal alone is at `?ui=terminal`). **v0.4.0** adds GPU surfaces and compute (the `compute` and `triangle` images), WASIX, the `shell` image pinned by digest, typing into `exec -i`, `wctr build` and `wctr compose` in the page, and the shell of a second origin for containers' pages; v0.3.0 added networking in the browser (containers reach each other by name), **Join class** to a teacher's relay, and wasi-nn with the `mnist` image. It works offline and keeps its images and containers across reloads. No `run -i` yet (it is built on engine v0.27.2) and no `-p` in the browser yet: the second origin is deployed, but `-p` is not live."
+  status = "v0.4.1 released, live"
+  blurb = "An in-browser container playground: **the dashboard, with a `wctr` terminal**, running WASI containers in [a web page](https://go-wasmcontainers.github.io/playground/) with no server, for cloud and container training labs (the terminal alone is at `?ui=terminal`). **v0.4.1** moves to engine v0.30.0, so `run -it` and `start -ai` work in the page, and fixes a leak of pending requests in the usercontent shell; v0.4.0 added GPU surfaces and compute (the `compute` and `triangle` images), WASIX, the `shell` image pinned by digest, typing into `exec -i`, `wctr build` and `wctr compose` in the page, and the shell of a second origin for containers' pages; v0.3.0 added networking in the browser (containers reach each other by name), **Join class** to a teacher's relay, and wasi-nn with the `mnist` image. It works offline and keeps its images and containers across reloads. Its dashboard is still v0.6.0, so GPU panes send no input there yet, and there is no `-p` in the browser yet: the second origin is deployed, but `-p` is not live."
 
 # What is planned, as one list so the page's counts are derived from it and
 # never typed beside it.
@@ -105,12 +105,8 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   what = "The relay and its live flow map shipped, and the playground can join a class; planned: ICMP and high availability across relays. [Relay docs](https://go-wasmcontainers.github.io/docs/latest/relay/), [design](https://go-wasmcontainers.github.io/docs/latest/design/classroom-network/)."
 
 [[params.planned]]
-  name = "run -it and attach in the playground"
-  what = "The engine has them since v0.30.0; the playground (v0.4.0, built on engine v0.27.2) types into `exec -i` and has a shell, but waits for a playground built on v0.30.0."
-
-[[params.planned]]
-  name = "GPU surface input from the dashboard"
-  what = "The guest side shipped in gpu v0.6.0; no dashboard release forwards pane events yet. Vertex buffers and depth-stencil are not served either."
+  name = "GPU surface input in the playground"
+  what = "gpu v0.6.0 serves it and dashboard v0.8.0 forwards pane events; the playground (v0.4.1) still uses dashboard v0.6.0 and gpu v0.5.1. Vertex buffers and depth-stencil are not served either."
 
 [[params.planned]]
   name = "A mini-Kubernetes"
