@@ -77,7 +77,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.repos]]
   name = "shell"
   status = "v0.3.0 released"
-  blurb = "A POSIX shell for WASI containers (**v0.3.0** updates its dependencies: coreutils, including `env CMD`, `xargs` and `find -exec`, and engine v0.29.2): `sh` (built on mvdan.cc/sh, with **a line editor on a terminal** since v0.2.0: arrow keys, history, Ctrl-C, Ctrl-D) and a `wasix` guest module (`wasix/v0.1.0`) for the small WASIX subset it needs to start programs, which the engine serves from v0.17.0; **`wasix/exec`** mirrors `os/exec` for WASI containers. The latest base image confirmed published, `ghcr.io/go-wasmcontainers/shell:0.2.0`, carries `sh` and the coreutils (v0.4.0), and is **public**: `wctr pull ghcr.io/go-wasmcontainers/shell:0.2.0`. [Docs](https://go-wasmcontainers.github.io/docs/latest/shell/)."
+  blurb = "A POSIX shell for WASI containers (**v0.3.0** updates its dependencies: coreutils, including `env CMD`, `xargs` and `find -exec`, and engine v0.29.2): `sh` (built on mvdan.cc/sh, with **a line editor on a terminal** since v0.2.0: arrow keys, history, Ctrl-C, Ctrl-D) and a `wasix` guest module (`wasix/v0.1.0`) for the small WASIX subset it needs to start programs, which the engine serves from v0.17.0; **`wasix/exec`** mirrors `os/exec` for WASI containers. Its base image, `ghcr.io/go-wasmcontainers/shell:0.3.0`, carries `sh` and the coreutils (v0.6.0, with `env CMD`, `xargs` and `find -exec`), and is **public**: `wctr pull ghcr.io/go-wasmcontainers/shell:0.3.0`. [Docs](https://go-wasmcontainers.github.io/docs/latest/shell/)."
 
 [[params.repos]]
   name = "gpu"
