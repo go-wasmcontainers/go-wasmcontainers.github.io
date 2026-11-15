@@ -112,6 +112,6 @@ probe        latest   ae7fb9d7cefb   12 hours ago   811kB</span></pre>
 
   {{/* The licence and "Pure Go · CGO_ENABLED=0" are the mantra strip's; the footer
        repeats them only when the strip is off (`landingkit check` fails otherwise). */}}
-  <footer><div class="wrap"><span>© the go-wasmcontainers authors{{ if not (partial "mantra-on.html" .) }} · BSD-3-Clause{{ end }}</span>{{ if not (partial "mantra-on.html" .) }}<span>Pure Go · CGO_ENABLED=0 · no frameworks</span>{{ end }}</div></footer>
+  <footer><div class="wrap"><span>© the go-wasmcontainers authors{{ if not (partial "mantra-on.html" .) }} · BSD-3-Clause{{ end }}</span>{{ if not (partial "mantra-on.html" .) }}<span>{{ if not (partial "mantra-on.html" $) }}Pure Go · {{ end }}{{ if not (partial "mantra-on.html" $) }}CGO_ENABLED=0 · {{ end }}no frameworks</span>{{ end }}</div></footer>
 </body>
 </html>
